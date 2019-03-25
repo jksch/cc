@@ -18,7 +18,7 @@ import (
 )
 
 // DefaultAddr will be use when no addres is provided.
-const DefaultAddr = ":3030"
+const DefaultAddr = ":3021"
 const defaultTimeout = 10 * time.Second
 
 // Persister is the db interface for this server.
