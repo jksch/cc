@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/jksch/cc/internal/models"
-	"github.com/jksch/cc/internal/server/static"
+	"github.com/jksch/cc/internal/webapp"
 	"github.com/jksch/rest/v2"
 )
 
@@ -53,7 +53,7 @@ func New(addr string, db Persister, logger *log.Logger) (*Server, error) {
 		mux: http.NewServeMux(),
 	}
 
-	s.mux.Handle("/", http.FileServer(static.FS(false)))
+	s.mux.Handle("/", webapp.New())
 	s.mux.HandleFunc("/api/courses", s.corses)
 
 	// A production server should have some kind of logger middleware.
