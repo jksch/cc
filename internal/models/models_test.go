@@ -79,6 +79,22 @@ func TestIsCourseValid(t *testing.T) {
 	}
 }
 
+func TestShouldResetCoursesModel(t *testing.T) {
+	t.Parallel()
+	exp := Course{}
+	given := Course{
+		ID:          10,
+		Name:        "Go",
+		Description: "Learn Golang.",
+		CentPrice:   1010,
+	}
+	given.Reset()
+
+	if exp != given {
+		t.Errorf("Exp: '%+v' got: '%+v'", exp, given)
+	}
+}
+
 func errStr(err error) string {
 	if err != nil {
 		return err.Error()

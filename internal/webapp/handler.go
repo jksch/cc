@@ -22,7 +22,6 @@ func New() http.Handler {
 		LoadingLabel: "App is loading! Gophers are working on it...",
 		Styles: []string{
 			"/bootstrap.css",
-			"/bootstrap.css.map",
 		},
 	}
 }

@@ -28,3 +28,11 @@ func (c *Course) IsValid() error {
 	}
 	return nil
 }
+
+func (c *Course) Reset() {
+	c.ID = 0
+	c.Name = ""
+	c.Description = ""
+	c.Instructor = ""
+	c.CentPrice = 0
+}
