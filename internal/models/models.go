@@ -29,6 +29,7 @@ func (c *Course) IsValid() error {
 	return nil
 }
 
+// Reset resets the course to its default values.
 func (c *Course) Reset() {
 	c.ID = 0
 	c.Name = ""
