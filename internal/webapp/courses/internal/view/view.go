@@ -119,8 +119,13 @@ type CoursesTable struct {
 }
 
 func (c *CoursesTable) OnMount(ctx app.Context) {
-	c.LoadCourses()
-	c.Update()
+	go func() {
+		if c.LoadCourses() {
+			app.Dispatch(func() {
+				c.Update()
+			})
+		}
+	}()
 }
 
 func (c *CoursesTable) Render() app.UI {
@@ -206,11 +211,14 @@ func (c *CoursesForm) Render() app.UI {
 	return app.Div().Class("mt-4").Body(
 		app.Form().OnSubmit(func(ctx app.Context, e app.Event) {
 			e.PreventDefault()
-
-			c.OnSubmit()
-
-			ctx.JSSrc.Call("reset")
-			c.Update() // Without is the reset dose not work after edit.
+			go func() {
+				if c.OnSubmit() {
+					app.Dispatch(func() {
+						ctx.JSSrc.Call("reset")
+						c.Update() // Without is the reset dose not work after edit.
+					})
+				}
+			}()
 		}).Body(
 			app.Div().Class("form-group").Body(
 				app.Label().For("in-course-name").Body(

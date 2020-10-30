@@ -17,7 +17,8 @@ type CoursesTable struct {
 }
 
 // LoadCourses loads all saved courses.
-func (c *CoursesTable) LoadCourses() {
+// Returns true when successful.
+func (c *CoursesTable) LoadCourses() bool {
 	c.ShowProgress(true)
 
 	courses, err := c.Client.LoadCourses()
@@ -25,10 +26,11 @@ func (c *CoursesTable) LoadCourses() {
 	c.ShowProgress(false)
 	if err != nil {
 		c.ShowPopup("Requesting courses list failed!", true)
-		return
+		return false
 	}
 	c.ShowPopup("Successfully loaded courses!", false)
 	c.Table = courses
+	return true
 }
 
 // AddCourse adds a course to the table.

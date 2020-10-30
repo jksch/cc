@@ -68,8 +68,11 @@ func TestFormOnSubmitError(t *testing.T) {
 			callSequece = append(callSequece, fmt.Sprintf("ShowPopup;%s;%t", text, error))
 		},
 	}
-	form.OnSubmit()
 
+	success := form.OnSubmit()
+	if success {
+		t.Errorf("Exp OnSubmit() to fail.")
+	}
 	if len(expCallSequece) != len(callSequece) {
 		t.Fatalf("Exp calls: %d got: %d", len(expCallSequece), len(callSequece))
 	}
@@ -114,8 +117,11 @@ func TestFormOnSubmitSuccess(t *testing.T) {
 			callSequece = append(callSequece, fmt.Sprintf("ShowPopup;%s;%t", text, error))
 		},
 	}
-	form.OnSubmit()
 
+	success := form.OnSubmit()
+	if !success {
+		t.Errorf("Exp OnSubmit() to succeed.")
+	}
 	if len(expCallSequece) != len(callSequece) {
 		t.Fatalf("Exp calls: %d got: %d", len(expCallSequece), len(callSequece))
 	}

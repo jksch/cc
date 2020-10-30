@@ -65,8 +65,11 @@ func TestTableFailToLoadCourses(t *testing.T) {
 			callSequece = append(callSequece, fmt.Sprintf("ShowPopup;%s;%t", text, error))
 		},
 	}
-	table.LoadCourses()
 
+	success := table.LoadCourses()
+	if success {
+		t.Errorf("Expected LoadCourses() to fail.")
+	}
 	if len(expCallSequece) != len(callSequece) {
 		t.Fatalf("Exp calls: %d got: %d", len(expCallSequece), len(callSequece))
 	}
@@ -107,8 +110,11 @@ func TestTableSuccessfullyLoadCourses(t *testing.T) {
 			callSequece = append(callSequece, fmt.Sprintf("ShowPopup;%s;%t", text, error))
 		},
 	}
-	table.LoadCourses()
 
+	success := table.LoadCourses()
+	if !success {
+		t.Errorf("Expected LoadCourses() to succeed.")
+	}
 	if len(expCallSequece) != len(callSequece) {
 		t.Fatalf("Exp calls: %d got: %d", len(expCallSequece), len(callSequece))
 	}

@@ -24,7 +24,8 @@ func (c *CoursesForm) EditCourse(course models.Course) {
 }
 
 // OnSubmit handles the form submit.
-func (c *CoursesForm) OnSubmit() {
+// Returns true if successful.
+func (c *CoursesForm) OnSubmit() bool {
 	c.ShowProgress(true)
 
 	ID, err := c.Client.SaveCourse(c.Course)
@@ -32,11 +33,12 @@ func (c *CoursesForm) OnSubmit() {
 	c.ShowProgress(false)
 	if err != nil {
 		c.ShowPopup("Could not save course!", true)
-		return
+		return false
 	}
 
 	c.Course.ID = int(ID)
 	c.AddCourse(c.Course)
 	c.Course.Reset()
 	c.ShowPopup("Successfully save course!", false)
+	return true
 }
