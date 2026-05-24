@@ -1,3 +1,11 @@
+# 📦 Repository Retired
+
+This repository is no longer maintained here.
+
+Repository moved to [codeberg.org/jksch/cc](https://codeberg.org/jksch/cc).
+
+---
+
 # Coding-Challenge Schulungsanbieter (freieTechnologiewahl)
 Ein Anbieter von Schulungen möchte seine Produkte online anbieten. Dazu benötigt er eine Web-Anwendung, auf der sich potentielle Kunden
 über das Schulungsangebot informieren und Schulungen buchen können. Jede Schulung wird an verschiedenen Terminen angeboten. An jedem
